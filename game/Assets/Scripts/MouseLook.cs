@@ -10,7 +10,6 @@ public class MouseLook : MonoBehaviour {
 	private float easeSpeed = 5.0f;
 	private float shakeSpeed = 1.0f;
 	private float shakeQuantity = 0.5f;
-	private float followSpeed = 10f;
  
 	//internal mouse
 	private float rotY = 0.0f;
@@ -37,6 +36,8 @@ public class MouseLook : MonoBehaviour {
 		Vector3 rot = transform.localRotation.eulerAngles;
 		rotY = rot.y;
 		rotX = rot.x;
+		currentY = rotY;
+		currentX = rotX;
 
 		//get perlin noise seed
 		perlinX = Random.Range(0f, 1000f);

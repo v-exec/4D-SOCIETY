@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FourD : MonoBehaviour
-{
+public class FourD : MonoBehaviour {
+
    	public static float ease(float val, float target, float ease) {
 		if (val == target) return val;
 
