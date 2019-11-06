@@ -38,4 +38,7 @@ sysinfo.txt
 # Other
 /assets
 /documentation
-*.png
+*Normal.png
+*Height.png
+*AO.png
+*Smoothness.png
