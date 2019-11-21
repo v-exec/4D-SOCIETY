@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2858050964059155701}
   - component: {fileID: 6553529701459711683}
   - component: {fileID: 706601018014673466}
+  - component: {fileID: 1266981626954063963}
   m_Layer: 0
   m_Name: staircase tall - clean white
   m_TagString: Untagged
@@ -78,3 +79,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1266981626954063963
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293254292708499174}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 6869324426846749200, guid: e6bb8e0545aee774fb4dc295dab7df1f, type: 3}

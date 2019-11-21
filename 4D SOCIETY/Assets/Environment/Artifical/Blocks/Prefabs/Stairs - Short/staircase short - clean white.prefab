@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 530074125694385684}
   - component: {fileID: 8791084904724857890}
   - component: {fileID: 2971456903871690971}
+  - component: {fileID: 1231364530588402150}
   m_Layer: 0
   m_Name: staircase short - clean white
   m_TagString: Untagged
@@ -78,3 +79,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1231364530588402150
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530938944679398407}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -1894508668394852769, guid: 7529083f10c50f64dae32a6ac6471732, type: 3}

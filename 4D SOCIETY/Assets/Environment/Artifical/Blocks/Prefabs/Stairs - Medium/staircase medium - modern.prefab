@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5424277917113977301}
   - component: {fileID: 3899535334372553699}
   - component: {fileID: 7287219826229497626}
-  - component: {fileID: -8656724390012688567}
+  - component: {fileID: 3481919067749169935}
   m_Layer: 0
   m_Name: staircase medium - modern
   m_TagString: Untagged
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &-8656724390012688567
+--- !u!64 &3481919067749169935
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,6 +90,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
-  m_Mesh: {fileID: 6534936053334592156, guid: e5ae1631357769543bb78ada37c39f26, type: 3}
+  m_Mesh: {fileID: -8356752923884072707, guid: fac3d389ab2ce1744b27cb905af8ddf0, type: 3}

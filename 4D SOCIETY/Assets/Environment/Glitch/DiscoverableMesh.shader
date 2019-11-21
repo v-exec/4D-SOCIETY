@@ -1,10 +1,10 @@
 ﻿Shader "Custom/DiscoverableMesh" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
+
 		_MainTex ("Texture", 2D) = "white" {}
 		_DissolveTexture("Dissolve Texture", 2D) = "white" {}
-		_Glossiness ("Smoothness", Range(0,1)) = 0.5
-		_Metallic ("Metallic", Range(0,1)) = 0.0
+		_Metallic ("Metallic", 2D) = "white" {}
 		_BumpMap ("Normal", 2D) = "bump" {}
 
 		_DiscoveryDistance ("DiscoveryDistance", Range(0.5, 6)) = 2.0
@@ -24,10 +24,12 @@
 
 		sampler2D _MainTex;
 		sampler2D _BumpMap;
+		sampler2D _Metallic;
 
 		struct Input {
 			float2 uv_MainTex;
 			float2 uv_BumpMap;
+			float2 uv_Metallic;
 			float3 worldPos;
 		};
 
@@ -35,8 +37,6 @@
 		    return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
 		}
 
-		float _Glossiness;
-		float _Metallic;
 		fixed4 _Color;
 
 		sampler2D _DissolveTexture;
@@ -68,8 +68,8 @@
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 
 			o.Albedo = c.rgb;
-			o.Metallic = _Metallic;
-			o.Smoothness = _Glossiness;
+			o.Metallic = tex2D (_Metallic, IN.uv_Metallic).r;
+			o.Smoothness = tex2D (_Metallic, IN.uv_Metallic).a;
 			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
 			o.Alpha = c.a;
 		}
