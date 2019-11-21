@@ -1,13 +1,15 @@
-﻿Shader "Unlit/DiscoverableMesh" {
+﻿Shader "Custom/DiscoverableMesh" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Texture", 2D) = "white" {}
 		_DissolveTexture("Dissolve Texture", 2D) = "white" {}
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
+		_BumpMap ("Normal", 2D) = "bump" {}
 
 		_DiscoveryDistance ("DiscoveryDistance", Range(0.5, 6)) = 2.0
 		_PointCount ("PointCount", Int) = 50
+		_VisibleForTesting ("VisibleForTesting", Range(-1, 1)) = 1
 	}
 
 	SubShader {
@@ -21,9 +23,11 @@
 		#pragma target 3.0
 
 		sampler2D _MainTex;
+		sampler2D _BumpMap;
 
 		struct Input {
 			float2 uv_MainTex;
+			float2 uv_BumpMap;
 			float3 worldPos;
 		};
 
@@ -40,6 +44,7 @@
 		int _PointCount;
 		float _Amounts[50];
 		fixed3 _Discoveries[50];
+		float _VisibleForTesting;
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 
@@ -58,13 +63,14 @@
 
 			//clip
 			float dissolve_value = tex2D(_DissolveTexture, IN.uv_MainTex).r;
-			clip(-dissolve_value + collectiveOpacity);
+			clip((-dissolve_value * _VisibleForTesting) + collectiveOpacity);
 
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 
 			o.Albedo = c.rgb;
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
+			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
 			o.Alpha = c.a;
 		}
 		ENDCG
