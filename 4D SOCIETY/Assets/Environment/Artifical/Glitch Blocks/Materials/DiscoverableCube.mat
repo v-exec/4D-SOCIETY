@@ -67,16 +67,17 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DiscoveryDistance: 2
+    - _DiscoveryDistance: 3
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
+    - _NoiseResolution: 35
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PointCount: 50
+    - _PointCount: 150
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

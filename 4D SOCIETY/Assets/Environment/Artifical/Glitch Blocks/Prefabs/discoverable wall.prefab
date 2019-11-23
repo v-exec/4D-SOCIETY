@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4271368036030267200}
   - component: {fileID: 7528466007761961913}
   - component: {fileID: 6493273084050628534}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: discoverable wall
-  m_TagString: Untagged
+  m_TagString: Discoverable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

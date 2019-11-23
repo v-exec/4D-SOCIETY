@@ -3,24 +3,24 @@
 		_Color ("Color", Color) = (1,1,1,1)
 
 		_MainTex ("Texture", 2D) = "white" {}
-		_DissolveTexture("Dissolve Texture", 2D) = "white" {}
 		_Metallic ("Metallic", 2D) = "white" {}
 		_BumpMap ("Normal", 2D) = "bump" {}
 
-		_DiscoveryDistance ("DiscoveryDistance", Range(0.5, 6)) = 2.0
-		_PointCount ("PointCount", Int) = 50
-		_VisibleForTesting ("VisibleForTesting", Range(-1, 1)) = 1
+		_DiscoveryDistance ("Discovery Distance", Range(0.5, 6)) = 3.0
+		_PointCount ("Point Count", Int) = 150
+		_NoiseResolution ("Noise Resolution", Range(1, 50)) = 35
+		_VisibleForTesting ("Visible (For Testing)", Range(-1, 1)) = 1
 	}
 
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 		LOD 100
-		Cull Off
 
 		CGPROGRAM
 
 		#pragma surface surf Standard fullforwardshadows
 		#pragma target 3.0
+		#include "ClassicNoise3D.hlsl"
 
 		sampler2D _MainTex;
 		sampler2D _BumpMap;
@@ -39,11 +39,11 @@
 
 		fixed4 _Color;
 
-		sampler2D _DissolveTexture;
 		float _DiscoveryDistance;
 		int _PointCount;
-		float _Amounts[50];
-		fixed3 _Discoveries[50];
+		float _Amounts[100];
+		fixed3 _Discoveries[100];
+		float _NoiseResolution;
 		float _VisibleForTesting;
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
@@ -58,11 +58,12 @@
 				}
 			}
 
-			//treat the collective opacity to retain noise pattern
+			//treat the collective opacity to not overpower noise pattern
 			collectiveOpacity = remap(collectiveOpacity, 0, _DiscoveryDistance * 2, 0, 1);
 
-			//clip
-			float dissolve_value = tex2D(_DissolveTexture, IN.uv_MainTex).r;
+			//clip using 3D perlin noise
+			float dissolve_value = cnoise(IN.worldPos * _NoiseResolution);
+			dissolve_value = remap(dissolve_value, -1, 1, 0, 0.4);
 			clip((-dissolve_value * _VisibleForTesting) + collectiveOpacity);
 
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;

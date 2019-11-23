@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2607524544468592915}
   - component: {fileID: 8580272810820261354}
   - component: {fileID: 7197110631635779797}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: discoverable rectangle
-  m_TagString: Untagged
+  m_TagString: Discoverable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

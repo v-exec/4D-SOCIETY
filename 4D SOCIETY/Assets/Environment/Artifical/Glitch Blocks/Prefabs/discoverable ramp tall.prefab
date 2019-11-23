@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6459006819148148359}
   - component: {fileID: 765481165064589950}
   - component: {fileID: 4721515877086297147}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: discoverable ramp tall
-  m_TagString: Untagged
+  m_TagString: Discoverable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

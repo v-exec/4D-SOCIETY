@@ -10,9 +10,9 @@ public class PlayerMove : MonoBehaviour {
 	private Camera camComponent;
 
 	//movement
-	private float walkSpeed = 0.1f;
-	private float speedChangeWalk = 5.0f;
-	private float speedChangeStop = 5.0f;
+	private float walkSpeed = 0.05f;
+	private float speedChangeWalk = 1.0f;
+	private float speedChangeStop = 1.0f;
 	private float directionChangeSpeed = 6f;
 	public float targetSpeed = 0f;
 	private Vector2 targetDirection = new Vector2(0, 0);
@@ -48,10 +48,13 @@ public class PlayerMove : MonoBehaviour {
 		Vector2 direction = getInput(horizontal, vertical);
 		Vector3 newLoc = new Vector3(gameObject.transform.position.x + direction.x, gameObject.transform.position.y, gameObject.transform.position.z + direction.y);
 
+		//disable gravity when grounded to allow for climbing slopes
+		if (!isGrounded(0.4f)) rb.useGravity = true;
+		else rb.useGravity = false;
+
 		//apply movement
 		rb.MovePosition(newLoc);
 
-		
 		//no movement - stop all forces (excluding vertical force for jumping)
 		if (horizontal == 0f && vertical == 0f) {
 			targetSpeed = FourD.ease(targetSpeed, 0f, speedChangeStop);
@@ -88,5 +91,9 @@ public class PlayerMove : MonoBehaviour {
 
 	public float getSpeed() {
 		return targetSpeed;
+	}
+
+	bool isGrounded(float extraDistance) {
+		return Physics.Raycast(transform.position, -Vector3.up, GetComponent<Collider>().bounds.extents.y + extraDistance);
 	}
 }

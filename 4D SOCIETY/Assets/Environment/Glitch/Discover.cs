@@ -5,24 +5,22 @@ using UnityEngine;
 public class Discover : MonoBehaviour {
 
 	private Vector4[] points;
-	private int pointCount = 50;
+	private int pointCount = 100;
 	private int pointIndex = 0;
 	private bool ready = false;
-	private float pointInterval = 0.2f;
+	private float pointInterval = 0.05f;
 	private float blenderSpeed = 5f;
-	private GameObject[] meshes;
 	private Coroutine[] routines;
 	private float[] amounts;
 	public LayerMask mask;
 	private float biggestDot = 0.1f;
 	private float smallestDot = 5f;
+	public Material[] discoverableMaterials;
 
 	void Start() {
 		points = new Vector4[pointCount];
 		routines = new Coroutine[pointCount];
 		amounts = new float[pointCount];
-
-		meshes = GameObject.FindGameObjectsWithTag("Discoverable");
 		StartCoroutine(ReadyCycle());
 	}
 
@@ -59,21 +57,21 @@ public class Discover : MonoBehaviour {
 	IEnumerator Blend(int index) {
 		//reset blending amounts
 		amounts[index] = smallestDot;
-		for (int i = 0; i < meshes.Length; i++) {
-			meshes[i].GetComponent<Renderer>().material.SetFloatArray("_Amounts", amounts);
+		for (int i = 0; i < discoverableMaterials.Length; i++) {
+			discoverableMaterials[i].SetFloatArray("_Amounts", amounts);
 		}
 
 		//add new discovery point to all meshes
-		for (int i = 0; i < meshes.Length; i++) {
-			meshes[i].GetComponent<Renderer>().material.SetVectorArray("_Discoveries", points);
+		for (int i = 0; i < discoverableMaterials.Length; i++) {
+			discoverableMaterials[i].SetVectorArray("_Discoveries", points);
 		}
 
 		//ease discovery falloff for visual effect
 		while (amounts[index] > biggestDot) {
 			yield return new WaitForSeconds(0.01f);
 			amounts[index] = FourD.ease(amounts[index], biggestDot, blenderSpeed);
-			for (int i = 0; i < meshes.Length; i++) {
-				meshes[i].GetComponent<Renderer>().material.SetFloatArray("_Amounts", amounts);
+			for (int i = 0; i < discoverableMaterials.Length; i++) {
+				discoverableMaterials[i].SetFloatArray("_Amounts", amounts);
 			}
 		}
 	}

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 401567595607913948}
   - component: {fileID: 6245981352497219877}
   - component: {fileID: 5080703580072720098}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: discoverable cube
-  m_TagString: Untagged
+  m_TagString: Discoverable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

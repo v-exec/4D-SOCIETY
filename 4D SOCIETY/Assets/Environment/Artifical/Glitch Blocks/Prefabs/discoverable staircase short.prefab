@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3407396484567183440}
   - component: {fileID: 8968083475265572009}
   - component: {fileID: 9062507945043376777}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: discoverable staircase short
-  m_TagString: Untagged
+  m_TagString: Discoverable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
