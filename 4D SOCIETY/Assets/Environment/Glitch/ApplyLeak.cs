@@ -14,7 +14,6 @@ namespace Assets.Scripts.Cam.Effects {
         private Material material;
 
         bool currentTextureEye0 = false;
-        bool currentTextureEye1 = false;
 
         public int antiAliasing = 1;
         public float scaleDistortion = 8.0f;

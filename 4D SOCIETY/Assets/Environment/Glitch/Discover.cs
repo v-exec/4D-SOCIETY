@@ -5,10 +5,10 @@ using UnityEngine;
 public class Discover : MonoBehaviour {
 
 	private Vector4[] points;
-	private int pointCount = 100;
+	private int pointCount = 150;
 	private int pointIndex = 0;
 	private bool ready = false;
-	private float pointInterval = 0.05f;
+	private float pointInterval = 0.03f;
 	private float blenderSpeed = 5f;
 	private Coroutine[] routines;
 	private float[] amounts;

@@ -6,10 +6,11 @@
 		_Metallic ("Metallic", 2D) = "white" {}
 		_BumpMap ("Normal", 2D) = "bump" {}
 
-		_DiscoveryDistance ("Discovery Distance", Range(0.5, 6)) = 3.0
+		_DiscoveryDistance ("Discovery Distance", Range(0.5, 10)) = 3.0
 		_PointCount ("Point Count", Int) = 150
-		_NoiseResolution ("Noise Resolution", Range(1, 50)) = 35
-		_VisibleForTesting ("Visible (For Testing)", Range(-1, 1)) = 1
+		_NoiseResolution ("Noise Resolution", Range(1, 50)) = 35.0
+		_NoiseCutoff ("Noise Cutoff", Range(0.01, 1)) = 0.5
+		_VisibleForTesting ("Visible (For Testing)", Range(-1, 1)) = 1.0
 	}
 
 	SubShader {
@@ -41,9 +42,10 @@
 
 		float _DiscoveryDistance;
 		int _PointCount;
-		float _Amounts[100];
-		fixed3 _Discoveries[100];
+		float _Amounts[150];
+		fixed3 _Discoveries[150];
 		float _NoiseResolution;
+		float _NoiseCutoff;
 		float _VisibleForTesting;
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
@@ -63,7 +65,8 @@
 
 			//clip using 3D perlin noise
 			float dissolve_value = cnoise(IN.worldPos * _NoiseResolution);
-			dissolve_value = remap(dissolve_value, -1, 1, 0, 0.4);
+			dissolve_value = remap(dissolve_value, -1, 1, 0, _NoiseCutoff);
+
 			clip((-dissolve_value * _VisibleForTesting) + collectiveOpacity);
 
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
