@@ -49,7 +49,7 @@ public class PlayerMove : MonoBehaviour {
 		Vector3 newLoc = new Vector3(gameObject.transform.position.x + direction.x, gameObject.transform.position.y, gameObject.transform.position.z + direction.y);
 
 		//disable gravity when grounded to allow for climbing slopes
-		if (!isGrounded(0.1f)) rb.useGravity = true;
+		if (!isGrounded(0.4f)) rb.useGravity = true;
 		else rb.useGravity = false;
 
 		//apply movement
