@@ -1,4 +1,4 @@
 # 4D-SOCIETY
 GAME(?)
 
-Documentation folder: https://drive.google.com/open?id=1EKqm8LZOQiyfXb3k_oBrvyzcaQLzREQh
+Semester Report: https://docs.google.com/document/d/1JnlTOh3HSimeNlmeYyJPuC-WzIxvJqqc129Ym_zWqbg/edit?usp=sharing
